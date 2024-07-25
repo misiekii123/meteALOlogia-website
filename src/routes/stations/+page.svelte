@@ -1,10 +1,8 @@
 <script lang="ts">
     import Station from "$lib/components/Station.svelte";
-    import Sensor from "$lib/components/Sensor.svelte";
     import type {StationProps} from "$lib/types";
 
-    export let data: {stations: StationProps[]};
-
+    export let data: {stations: StationProps[], reports: Map<string, Map<string, any[]>>};
 </script>
 
 <svelte:head>
@@ -14,7 +12,7 @@
 <section>
     <h1>Stacje pogodowe</h1>
     {#each data.stations as station}
-        <Station data={station}/>
+        <Station data={station} reports={data.reports.get(station.id)} />
     {/each}
 </section>
 
